@@ -4,3 +4,11 @@
 
 /* Small helpers to keep demo presentable */
 body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial }
+
+/* Print styles */
+@media print {
+	/* Remove header and controls from print */
+	.no-print, header { display: none !important }
+	body { background: white }
+	.printable-invoice { box-shadow: none; border: none; }
+}

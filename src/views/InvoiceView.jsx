@@ -15,21 +15,59 @@ const lensOptions = [
 
 export default function InvoiceView(){
   const [patient, setPatient] = useState({ name: '', age: '', prescription: '' })
-  const [frameId, setFrameId] = useState(mockFrames[0].id)
-  const [lensId, setLensId] = useState(lensOptions[0].id)
+  const [items, setItems] = useState([
+    { id: 'F-100', desc: 'Classic Black Frame', qty: 1, unit: 1200 },
+    { id: 'L-clear', desc: 'Clear Lens', qty: 2, unit: 800 }
+  ])
   const [invoice, setInvoice] = useState(null)
+  const [discount, setDiscount] = useState(0)
+  const taxRate = 0.15
 
-  function total(){
-    const frame = mockFrames.find(f=>f.id===frameId)
-    const lens = lensOptions.find(l=>l.id===lensId)
-    return (frame?.price||0) + (lens?.price||0)
+  function subtotal(){
+    return items.reduce((s, it) => s + (Number(it.qty || 0) * Number(it.unit || 0)), 0)
+  }
+
+  function tax(){
+    return Math.round(subtotal() * taxRate)
+  }
+
+  function grandTotal(){
+    return subtotal() + tax() - Number(discount || 0)
+  }
+
+  function updateItem(idx, patch){
+    setItems(prev => prev.map((it, i) => i===idx ? {...it, ...patch} : it))
+  }
+
+  function addItem(){
+    setItems(prev => [...prev, { id: `X-${Date.now()}`, desc: 'New Item', qty:1, unit:0 }])
+  }
+
+  function removeItem(idx){
+    setItems(prev => prev.filter((_,i)=>i!==idx))
+  }
+
+  function quickAddFrame(id){
+    const f = mockFrames.find(f=>f.id===id)
+    if(!f) return
+    setItems(prev => [...prev, { id: f.id, desc: f.name + ' (Frame)', qty:1, unit: f.price }])
+  }
+
+  function quickAddLens(id){
+    const l = lensOptions.find(l=>l.id===id)
+    if(!l) return
+    setItems(prev => [...prev, { id: l.id, desc: l.name + ' (Lens)', qty:1, unit: l.price }])
   }
 
   function generate(){
     setInvoice({
       id: `INV-${Date.now().toString().slice(-6)}`,
-      patient, frame: mockFrames.find(f=>f.id===frameId), lens: lensOptions.find(l=>l.id===lensId),
-      total: total()
+      patient,
+      items,
+      subtotal: subtotal(),
+      tax: tax(),
+      discount: Number(discount || 0),
+      total: grandTotal()
     })
   }
 
@@ -42,30 +80,107 @@ export default function InvoiceView(){
           <input value={patient.age} onChange={e=>setPatient({...patient, age:e.target.value})} placeholder="Age" className="p-2 border rounded" />
           <input value={patient.prescription} onChange={e=>setPatient({...patient, prescription:e.target.value})} placeholder="Prescription" className="p-2 border rounded sm:col-span-2" />
 
-          <select value={frameId} onChange={e=>setFrameId(e.target.value)} className="p-2 border rounded">
-            {mockFrames.map(f=> <option key={f.id} value={f.id}>{f.name} — ₹{f.price}</option>)}
-          </select>
+          <div className="sm:col-span-2 flex gap-2">
+            <select className="p-2 border rounded" onChange={e=>quickAddFrame(e.target.value)} defaultValue="">
+              <option value="" disabled>Quick add frame...</option>
+              {mockFrames.map(f=> <option key={f.id} value={f.id}>{f.name} — ₹{f.price}</option>)}
+            </select>
+            <select className="p-2 border rounded" onChange={e=>quickAddLens(e.target.value)} defaultValue="">
+              <option value="" disabled>Quick add lens...</option>
+              {lensOptions.map(l=> <option key={l.id} value={l.id}>{l.name} — ₹{l.price}</option>)}
+            </select>
+          </div>
 
-          <select value={lensId} onChange={e=>setLensId(e.target.value)} className="p-2 border rounded">
-            {lensOptions.map(l=> <option key={l.id} value={l.id}>{l.name} — ₹{l.price}</option>)}
-          </select>
+          <div className="sm:col-span-2">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-gray-600">
+                    <th>Description</th>
+                    <th className="w-20">Qty</th>
+                    <th className="w-28">Unit</th>
+                    <th className="w-28">Line</th>
+                    <th className="w-20"> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.map((it, idx)=> (
+                    <tr key={it.id} className="align-top">
+                      <td>
+                        <input className="w-full p-1 border rounded" value={it.desc} onChange={e=>updateItem(idx, { desc: e.target.value })} />
+                      </td>
+                      <td>
+                        <input className="p-1 border rounded w-full" type="number" value={it.qty} onChange={e=>updateItem(idx, { qty: Number(e.target.value) })} />
+                      </td>
+                      <td>
+                        <input className="p-1 border rounded w-full" type="number" value={it.unit} onChange={e=>updateItem(idx, { unit: Number(e.target.value) })} />
+                      </td>
+                      <td>₹{(Number(it.qty||0) * Number(it.unit||0)).toLocaleString()}</td>
+                      <td><button onClick={()=>removeItem(idx)} className="text-red-500">Remove</button></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          <div className="sm:col-span-2 flex items-center justify-between">
-            <div>Total: <strong>₹{total()}</strong></div>
+            <div className="mt-2 flex items-center gap-2">
+              <button onClick={addItem} className="px-3 py-1 bg-gray-100 rounded">+ Add line</button>
+              <div className="ml-auto text-sm">
+                <div>Subtotal: <strong>₹{subtotal().toLocaleString()}</strong></div>
+                <div>Tax ({Math.round(taxRate*100)}%): <strong>₹{tax().toLocaleString()}</strong></div>
+                <div className="flex items-center gap-2 mt-1">Discount: <input type="number" className="p-1 border rounded w-32" value={discount} onChange={e=>setDiscount(Number(e.target.value))} /> </div>
+                <div className="mt-2 text-lg">Total: <strong>₹{grandTotal().toLocaleString()}</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="sm:col-span-2 flex items-center justify-end gap-2">
             <button onClick={generate} className="bg-blue-600 text-white px-3 py-1 rounded">Generate Invoice</button>
           </div>
         </div>
       </section>
 
       {invoice && (
-        <section className="bg-white p-4 rounded shadow-sm">
-          <h3 className="font-medium">Invoice Preview</h3>
-          <div className="mt-2">
-            <div><strong>ID:</strong> {invoice.id}</div>
-            <div><strong>Patient:</strong> {invoice.patient.name} — {invoice.patient.age}</div>
-            <div><strong>Frame:</strong> {invoice.frame.name} ({invoice.frame.id})</div>
-            <div><strong>Lens:</strong> {invoice.lens.name}</div>
-            <div className="mt-2 text-lg"><strong>Total: ₹{invoice.total}</strong></div>
+        <section className="bg-white p-4 rounded shadow-sm printable-invoice">
+          <div className="flex items-start justify-between">
+            <div>
+              <h3 className="font-medium">Invoice Preview</h3>
+              <div className="text-sm text-gray-600">ID: {invoice.id}</div>
+              <div className="text-sm text-gray-600">Patient: {invoice.patient.name} — {invoice.patient.age}</div>
+            </div>
+            <div className="space-y-2">
+              <button onClick={()=>window.print()} className="px-3 py-1 bg-gray-100 rounded no-print">Print / Save PDF</button>
+            </div>
+          </div>
+
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-gray-600">
+                  <th>Description</th>
+                  <th className="w-24">Qty</th>
+                  <th className="w-28">Unit</th>
+                  <th className="w-28">Line</th>
+                </tr>
+              </thead>
+              <tbody>
+                {invoice.items.map(it=> (
+                  <tr key={it.id}>
+                    <td>{it.desc}</td>
+                    <td>{it.qty}</td>
+                    <td>₹{it.unit.toLocaleString()}</td>
+                    <td>₹{(it.qty * it.unit).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-4 text-right text-sm">
+            <div>Subtotal: ₹{invoice.subtotal.toLocaleString()}</div>
+            <div>Tax: ₹{invoice.tax.toLocaleString()}</div>
+            <div>Discount: -₹{invoice.discount.toLocaleString()}</div>
+            <div className="mt-2 text-lg">Total: <strong>₹{invoice.total.toLocaleString()}</strong></div>
           </div>
         </section>
       )}
