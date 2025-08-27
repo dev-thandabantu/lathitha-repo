@@ -11,8 +11,7 @@ export default function Header(){
             <Sun size={18} />
           </div>
           <div>
-            <div className="font-semibold">Lathi Tha' Eyecare</div>
-            <div className="text-xs text-gray-500">Proof Sprint Demo</div>
+            <div className="font-semibold">LathiTha'</div>
           </div>
         </div>
 
