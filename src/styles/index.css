@@ -11,4 +11,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
 	.no-print, header { display: none !important }
 	body { background: white }
 	.printable-invoice { box-shadow: none; border: none; }
+	/* A4 sizing and margins for a clean PDF */
+	@page { size: A4; margin: 20mm }
+	.printable-invoice { width: 210mm; padding: 12mm; margin: 0 auto }
 }

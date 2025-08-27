@@ -142,13 +142,24 @@ export default function InvoiceView(){
 
       {invoice && (
         <section className="bg-white p-4 rounded shadow-sm printable-invoice">
-          <div className="flex items-start justify-between">
-            <div>
-              <h3 className="font-medium">Invoice Preview</h3>
-              <div className="text-sm text-gray-600">ID: {invoice.id}</div>
-              <div className="text-sm text-gray-600">Patient: {invoice.patient.name} — {invoice.patient.age}</div>
+          <div className="flex items-start justify-between border-b pb-3">
+            <div className="flex items-center gap-3">
+              <div className="w-16 h-16 bg-gray-200 rounded flex items-center justify-center">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="4" fill="#CBD5E1" />
+                  <text x="12" y="16" fontSize="10" textAnchor="middle" fill="#1F2937">Logo</text>
+                </svg>
+              </div>
+              <div>
+                <div className="text-lg font-semibold">Lathi Tha' Eyecare</div>
+                <div className="text-sm text-gray-600">123 Vision Street, East London</div>
+                <div className="text-sm text-gray-600">contact@lathitha.example | +27 11 123 4567</div>
+              </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 text-right">
+              <div className="text-sm text-gray-600">Invoice</div>
+              <div className="text-sm">ID: {invoice.id}</div>
+              <div className="text-sm text-gray-600">Patient: {invoice.patient.name} — {invoice.patient.age}</div>
               <button onClick={()=>window.print()} className="px-3 py-1 bg-gray-100 rounded no-print">Print / Save PDF</button>
             </div>
           </div>
