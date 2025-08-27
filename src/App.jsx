@@ -9,10 +9,10 @@ import CommsView from './views/CommsView'
 export default function App(){
   const location = useLocation()
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-800">
+  <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-800 overflow-x-hidden">
       <Header />
 
-      <main className="max-w-4xl mx-auto p-4">
+  <main className="max-w-4xl mx-auto p-4 min-w-0">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<InvoiceView/>} />

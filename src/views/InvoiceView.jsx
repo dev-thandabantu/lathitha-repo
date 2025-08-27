@@ -92,7 +92,7 @@ export default function InvoiceView(){
           </div>
 
           <div className="sm:col-span-2">
-            <div className="overflow-x-auto">
+      <div className="overflow-x-auto min-w-0">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-left text-gray-600">
@@ -165,7 +165,7 @@ export default function InvoiceView(){
           </div>
 
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm table-auto">
               <thead>
                 <tr className="text-left text-gray-600">
                   <th>Description</th>

@@ -5,7 +5,7 @@ import { Sun, FileText, MapPin, MessageSquare } from 'lucide-react'
 export default function Header(){
   return (
     <header className="bg-white shadow-sm">
-      <div className="max-w-4xl mx-auto p-4 flex items-center justify-between">
+  <div className="max-w-4xl mx-auto p-4 flex items-center justify-between min-w-0">
         <div className="flex items-center gap-3">
           <div className="bg-blue-600 text-white rounded p-2">
             <Sun size={18} />
@@ -15,7 +15,7 @@ export default function Header(){
           </div>
         </div>
 
-        <nav className="flex items-center gap-3">
+  <nav className="flex items-center gap-3 min-w-0">
           <Link to="/" className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600">
             <FileText size={16} /> Invoice
           </Link>

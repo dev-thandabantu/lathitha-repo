@@ -84,10 +84,10 @@ export default function CommsView(){
 
       <section className="bg-white p-4 rounded shadow-sm">
         <h3 className="font-medium">Messages</h3>
-        <div ref={listRef} className="mt-3 space-y-3 max-h-80 overflow-y-auto p-2">
+  <div ref={listRef} className="mt-3 space-y-3 max-h-80 overflow-y-auto p-2 min-w-0">
           <AnimatePresence initial={false}>
             {messages.map(m=> (
-              <motion.div key={m.id} initial={{opacity:0, x:50}} animate={{opacity:1, x:0}} exit={{opacity:0, x:50}} className={`max-w-xs p-3 rounded-md ${m.outgoing? 'ml-auto bg-blue-600 text-white' : 'bg-white border'}`}>
+              <motion.div key={m.id} initial={{opacity:0, x:50}} animate={{opacity:1, x:0}} exit={{opacity:0, x:50}} className={`max-w-xs break-words p-3 rounded-md ${m.outgoing? 'ml-auto bg-blue-600 text-white' : 'bg-white border'}`}>
                 <div className="text-sm whitespace-pre-wrap">{m.text}</div>
                 <div className="text-xs text-gray-300 mt-1">{m.time}</div>
               </motion.div>
