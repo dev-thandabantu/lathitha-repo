@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const steps = [
   'Eye Test Done',
@@ -24,7 +25,7 @@ export default function OrderTrackingView(){
   }
 
   return (
-    <div className="space-y-6">
+    <motion.div initial={{opacity:0, y:8}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-8}} className="space-y-6">
       <section className="bg-white p-4 rounded shadow-sm">
         <h2 className="font-semibold mb-2">Order Tracking</h2>
         <div className="flex gap-2">
@@ -51,6 +52,6 @@ export default function OrderTrackingView(){
           })}
         </div>
       </section>
-    </div>
+    </motion.div>
   )
 }

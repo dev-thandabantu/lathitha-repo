@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 export default function CommsView(){
   const sample = [
@@ -7,7 +8,7 @@ export default function CommsView(){
   ]
 
   return (
-    <div className="space-y-6">
+    <motion.div initial={{opacity:0, y:8}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-8}} className="space-y-6">
       <section className="bg-white p-4 rounded shadow-sm">
         <h2 className="font-semibold mb-2">Comms Preview</h2>
         <div className="space-y-3">
@@ -25,6 +26,6 @@ export default function CommsView(){
         <h3 className="font-medium">Send Live (Twilio)</h3>
         <div className="text-sm text-gray-600">This demo shows a mock preview. To send real WhatsApp messages, add Twilio credentials and an API route.</div>
       </section>
-    </div>
+    </motion.div>
   )
 }

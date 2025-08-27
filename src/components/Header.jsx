@@ -1,0 +1,33 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Sun, FileText, MapPin, MessageSquare } from 'lucide-react'
+
+export default function Header(){
+  return (
+    <header className="bg-white shadow-sm">
+      <div className="max-w-4xl mx-auto p-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 text-white rounded p-2">
+            <Sun size={18} />
+          </div>
+          <div>
+            <div className="font-semibold">Lathi Tha' Eyecare</div>
+            <div className="text-xs text-gray-500">Proof Sprint Demo</div>
+          </div>
+        </div>
+
+        <nav className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600">
+            <FileText size={16} /> Invoice
+          </Link>
+          <Link to="/track" className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600">
+            <MapPin size={16} /> Track
+          </Link>
+          <Link to="/comms" className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600">
+            <MessageSquare size={16} /> Comms
+          </Link>
+        </nav>
+      </div>
+    </header>
+  )
+}

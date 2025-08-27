@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const mockFrames = [
   { id: 'F-100', name: 'Classic Black', price: 1200 },
@@ -33,7 +34,7 @@ export default function InvoiceView(){
   }
 
   return (
-    <div className="space-y-6">
+    <motion.div initial={{opacity:0, y:8}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-8}} className="space-y-6">
       <section className="bg-white p-4 rounded shadow-sm">
         <h2 className="font-semibold mb-2">Create Invoice</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -68,6 +69,6 @@ export default function InvoiceView(){
           </div>
         </section>
       )}
-    </div>
+    </motion.div>
   )
 }
