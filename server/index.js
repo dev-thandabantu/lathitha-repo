@@ -7,6 +7,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
+import fs from 'fs'
+import path from 'path'
 
 dotenv.config()
 
@@ -33,6 +35,64 @@ app.post('/send-whatsapp', async (req, res) => {
     console.error(err)
     res.status(500).json({ error: err.message })
   }
+})
+
+// --- simple inventory API (file-backed, minimal for demo)
+const DATA_DIR = path.resolve(process.cwd(), 'server', 'data')
+const INV_FILE = path.join(DATA_DIR, 'inventory.json')
+
+function readInventory(){
+  try{
+    const raw = fs.readFileSync(INV_FILE, 'utf-8')
+    return JSON.parse(raw)
+  }catch(e){
+    return []
+  }
+}
+
+function writeInventory(arr){
+  try{
+    fs.writeFileSync(INV_FILE, JSON.stringify(arr, null, 2))
+    return true
+  }catch(e){
+    console.error('Failed to write inventory', e)
+    return false
+  }
+}
+
+app.get('/api/inventory', (req, res) => {
+  const data = readInventory()
+  res.json(data)
+})
+
+app.post('/api/inventory', (req, res) => {
+  const item = req.body
+  if(!item || !item.id){
+    return res.status(400).json({ error: 'Invalid item' })
+  }
+  const data = readInventory()
+  data.push(item)
+  writeInventory(data)
+  res.status(201).json(item)
+})
+
+app.put('/api/inventory/:id', (req, res) => {
+  const id = req.params.id
+  const patch = req.body
+  const data = readInventory()
+  const idx = data.findIndex(i=>i.id===id)
+  if(idx === -1) return res.status(404).json({ error: 'Not found' })
+  data[idx] = { ...data[idx], ...patch }
+  writeInventory(data)
+  res.json(data[idx])
+})
+
+app.delete('/api/inventory/:id', (req, res) => {
+  const id = req.params.id
+  let data = readInventory()
+  data = data.filter(i=>i.id!==id)
+  writeInventory(data)
+  res.status(204).end()
 })
 
 app.listen(PORT, ()=> console.log(`Twilio demo API listening on http://localhost:${PORT}`))

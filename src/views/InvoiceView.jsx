@@ -1,19 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const mockFrames = [
-  { id: 'F-100', name: 'Classic Black', price: 1200 },
-  { id: 'F-101', name: 'Tortoise Shell', price: 1500 },
-  { id: 'F-102', name: 'Modern Clear', price: 1800 }
-]
+// inventory will be fetched from the demo server
+let initialInventory = []
 
-const lensOptions = [
-  { id: 'L-clear', name: 'Clear', price: 800 },
-  { id: 'L-tint', name: 'Tinted', price: 1100 },
-  { id: 'L-trans', name: 'Transitions', price: 1600 }
-]
 
 export default function InvoiceView(){
+  const [inventory, setInventory] = useState(initialInventory)
   const [patient, setPatient] = useState({ name: '', age: '', prescription: '' })
   const [items, setItems] = useState([
     { id: 'F-100', desc: 'Classic Black Frame', qty: 1, unit: 1200 },
@@ -48,16 +41,25 @@ export default function InvoiceView(){
   }
 
   function quickAddFrame(id){
-    const f = mockFrames.find(f=>f.id===id)
+    const f = inventory.find(f=>f.id===id)
     if(!f) return
     setItems(prev => [...prev, { id: f.id, desc: f.name + ' (Frame)', qty:1, unit: f.price }])
   }
 
   function quickAddLens(id){
-    const l = lensOptions.find(l=>l.id===id)
+    const l = inventory.find(l=>l.id===id)
     if(!l) return
     setItems(prev => [...prev, { id: l.id, desc: l.name + ' (Lens)', qty:1, unit: l.price }])
   }
+
+  useEffect(()=>{
+    let mounted = true
+    fetch('/api/inventory').then(r=>r.json()).then(data=>{
+      if(!mounted) return
+      setInventory(data || [])
+    }).catch(()=>setInventory([]))
+    return ()=> mounted = false
+  }, [])
 
   function generate(){
     setInvoice({
@@ -83,11 +85,11 @@ export default function InvoiceView(){
           <div className="sm:col-span-2 flex gap-2">
             <select className="p-2 border rounded" onChange={e=>quickAddFrame(e.target.value)} defaultValue="">
               <option value="" disabled>Quick add frame...</option>
-              {mockFrames.map(f=> <option key={f.id} value={f.id}>{f.name} — R{f.price}</option>)}
+              {inventory.filter(i=>i.type==='frame').map(f=> <option key={f.id} value={f.id}>{f.name} — R{f.price}</option>)}
             </select>
             <select className="p-2 border rounded" onChange={e=>quickAddLens(e.target.value)} defaultValue="">
               <option value="" disabled>Quick add lens...</option>
-              {lensOptions.map(l=> <option key={l.id} value={l.id}>{l.name} — R{l.price}</option>)}
+              {inventory.filter(i=>i.type==='lens').map(l=> <option key={l.id} value={l.id}>{l.name} — R{l.price}</option>)}
             </select>
           </div>
 

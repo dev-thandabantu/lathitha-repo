@@ -7,6 +7,7 @@ import OrderTrackingView from './views/OrderTrackingView'
 import CommsView from './views/CommsView'
 import LoginView from './views/LoginView'
 import CustomerTrackingView from './views/CustomerTrackingView'
+import InventoryView from './views/InventoryView'
 import { useRole } from './context/RoleContext'
 import { Navigate } from 'react-router-dom'
 
@@ -30,6 +31,7 @@ export default function App(){
             <Route path="/" element={<RequireAuth><InvoiceView/></RequireAuth>} />
             <Route path="/track" element={<RequireAuth><OrderTrackingView/></RequireAuth>} />
             <Route path="/track/customer" element={<CustomerTrackingView/>} />
+            <Route path="/inventory" element={<RequireAuth><InventoryView/></RequireAuth>} />
             <Route path="/comms" element={<RequireAuth><CommsView/></RequireAuth>} />
           </Routes>
         </AnimatePresence>
