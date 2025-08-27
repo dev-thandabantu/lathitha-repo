@@ -193,8 +193,51 @@ export default function InvoiceView(){
             <div>Discount: -R{invoice.discount.toLocaleString()}</div>
             <div className="mt-2 text-lg">Total: <strong>R{invoice.total.toLocaleString()}</strong></div>
           </div>
+
+          <div className="mt-4 border-t pt-3 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div className="flex-1 text-sm text-gray-700">
+              Share this invoice and tracking link with the customer.
+            </div>
+            <div className="flex items-center gap-2">
+              <TrackingCtas invoiceId={invoice.id} />
+            </div>
+          </div>
         </section>
       )}
     </motion.div>
+  )
+}
+
+function TrackingCtas({ invoiceId }){
+  const [copied, setCopied] = React.useState(false)
+  const trackUrl = `${window.location.origin}/track/customer?order=${encodeURIComponent(invoiceId.replace(/^INV-/, 'ORD-'))}`
+
+  async function copy(){
+    try{
+      await navigator.clipboard.writeText(trackUrl)
+      setCopied(true)
+      setTimeout(()=>setCopied(false), 2500)
+    }catch(e){
+      // fallback
+      const el = document.createElement('textarea')
+      el.value = trackUrl
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+      setCopied(true)
+      setTimeout(()=>setCopied(false), 2500)
+    }
+  }
+
+  const waText = encodeURIComponent(`Your order is being processed. Track it here: ${trackUrl}`)
+  const waLink = `https://wa.me/?text=${waText}`
+
+  return (
+    <div className="flex items-center gap-2">
+      <button onClick={copy} className="px-3 py-1 bg-gray-100 rounded text-sm">Copy tracking link</button>
+      <a href={waLink} target="_blank" rel="noreferrer" className="px-3 py-1 bg-green-600 text-white rounded text-sm">Share via WhatsApp</a>
+      {copied && <div className="text-sm text-green-600">Link copied!</div>}
+    </div>
   )
 }
