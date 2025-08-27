@@ -83,11 +83,11 @@ export default function InvoiceView(){
           <div className="sm:col-span-2 flex gap-2">
             <select className="p-2 border rounded" onChange={e=>quickAddFrame(e.target.value)} defaultValue="">
               <option value="" disabled>Quick add frame...</option>
-              {mockFrames.map(f=> <option key={f.id} value={f.id}>{f.name} — ₹{f.price}</option>)}
+              {mockFrames.map(f=> <option key={f.id} value={f.id}>{f.name} — R{f.price}</option>)}
             </select>
             <select className="p-2 border rounded" onChange={e=>quickAddLens(e.target.value)} defaultValue="">
               <option value="" disabled>Quick add lens...</option>
-              {lensOptions.map(l=> <option key={l.id} value={l.id}>{l.name} — ₹{l.price}</option>)}
+              {lensOptions.map(l=> <option key={l.id} value={l.id}>{l.name} — R{l.price}</option>)}
             </select>
           </div>
 
@@ -115,7 +115,7 @@ export default function InvoiceView(){
                       <td>
                         <input className="p-1 border rounded w-full" type="number" value={it.unit} onChange={e=>updateItem(idx, { unit: Number(e.target.value) })} />
                       </td>
-                      <td>₹{(Number(it.qty||0) * Number(it.unit||0)).toLocaleString()}</td>
+                      <td>R{(Number(it.qty||0) * Number(it.unit||0)).toLocaleString()}</td>
                       <td><button onClick={()=>removeItem(idx)} className="text-red-500">Remove</button></td>
                     </tr>
                   ))}
@@ -126,10 +126,10 @@ export default function InvoiceView(){
             <div className="mt-2 flex items-center gap-2">
               <button onClick={addItem} className="px-3 py-1 bg-gray-100 rounded">+ Add line</button>
               <div className="ml-auto text-sm">
-                <div>Subtotal: <strong>₹{subtotal().toLocaleString()}</strong></div>
-                <div>Tax ({Math.round(taxRate*100)}%): <strong>₹{tax().toLocaleString()}</strong></div>
+                <div>Subtotal: <strong>R{subtotal().toLocaleString()}</strong></div>
+                <div>Tax ({Math.round(taxRate*100)}%): <strong>R{tax().toLocaleString()}</strong></div>
                 <div className="flex items-center gap-2 mt-1">Discount: <input type="number" className="p-1 border rounded w-32" value={discount} onChange={e=>setDiscount(Number(e.target.value))} /> </div>
-                <div className="mt-2 text-lg">Total: <strong>₹{grandTotal().toLocaleString()}</strong></div>
+                <div className="mt-2 text-lg">Total: <strong>R{grandTotal().toLocaleString()}</strong></div>
               </div>
             </div>
           </div>
@@ -168,8 +168,8 @@ export default function InvoiceView(){
                   <tr key={it.id}>
                     <td>{it.desc}</td>
                     <td>{it.qty}</td>
-                    <td>₹{it.unit.toLocaleString()}</td>
-                    <td>₹{(it.qty * it.unit).toLocaleString()}</td>
+                    <td>R{it.unit.toLocaleString()}</td>
+                    <td>R{(it.qty * it.unit).toLocaleString()}</td>
                   </tr>
                 ))}
               </tbody>
@@ -177,10 +177,10 @@ export default function InvoiceView(){
           </div>
 
           <div className="mt-4 text-right text-sm">
-            <div>Subtotal: ₹{invoice.subtotal.toLocaleString()}</div>
-            <div>Tax: ₹{invoice.tax.toLocaleString()}</div>
-            <div>Discount: -₹{invoice.discount.toLocaleString()}</div>
-            <div className="mt-2 text-lg">Total: <strong>₹{invoice.total.toLocaleString()}</strong></div>
+            <div>Subtotal: R{invoice.subtotal.toLocaleString()}</div>
+            <div>Tax: R{invoice.tax.toLocaleString()}</div>
+            <div>Discount: -R{invoice.discount.toLocaleString()}</div>
+            <div className="mt-2 text-lg">Total: <strong>R{invoice.total.toLocaleString()}</strong></div>
           </div>
         </section>
       )}
