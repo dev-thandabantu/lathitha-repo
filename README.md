@@ -4,23 +4,54 @@ Lightweight Vite + React demo for rapid prototyping.
 
 Quick start (Windows PowerShell):
 
+# Proof Sprint — Lathi Tha' Eyecare (demo)
+
+Compact demo app (Vite + React + Tailwind) that showcases mobile-first invoice creation, order tracking, and a small WhatsApp comms PoC.
+
+Status: Proof-of-Concept (local demo)
+
+Features
+- Mobile-first invoice editor (print / PDF)
+- Public customer tracking page
+- Staff comms UI to send WhatsApp updates (Meta Cloud preferred, Twilio fallback)
+- File-backed demo server and inventory CRUD
+
+Prerequisites
+- Node.js (18+ recommended)
+- npm
+
+Quick start (PowerShell)
+
+1) Install
+
 ```powershell
+cd 'C:\Users\User\source\repos\aakitech\lathitha repo'
 npm install
-npm run dev
 ```
 
-Local Twilio demo server (optional):
-
-1. Copy `.env.example` to `.env` and fill in your Twilio credentials (TWILIO_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM).
-2. Start the demo server:
+2) Start server + frontend (recommended)
 
 ```powershell
-node server/index.js
+npm run dev:all
 ```
 
-3. The UI will try to POST to `/send-whatsapp` (same host) — when running Vite in dev mode it proxies to the same origin by default for relative paths. If you run the server on a different port, configure a proxy in `vite.config.js` or call the server directly.
+Alternatively:
 
-Notes:
-- Mobile-first UI but styled to work on desktop as well.
-- TailwindCSS is used for styles. If Tailwind CLI reports errors about unknown `@tailwind` rules, ensure `postcss` is configured and that you installed `tailwindcss`.
-- To enable Twilio WhatsApp sending, create a server route and add `TWILIO_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM` in `.env`.
+```powershell
+npm run server   # start demo Express server only
+npm run dev      # start frontend only (Vite)
+```
+
+Environment
+- Copy `.env.example` -> `.env` and add any provider credentials you want to test:
+	- Meta WhatsApp Cloud: `WA_PHONE_NUMBER_ID`, `WA_ACCESS_TOKEN`
+	- Twilio fallback: `TWILIO_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM`
+
+Project layout
+- `src/` — React front-end
+- `server/` — demo Express server
+- `server/data/` — file-backed JSON stores (inventory, messages)
+
+Dev notes
+- The Comms UI now sends a polished text message (order id + tracking link). The server persists messages into `server/data/messages.json` for demo inspection.
+- `npm run dev:all` uses `scripts/start-dev.cjs` to wait for the server before starting Vite to avoid proxy ECONNREFUSED errors.
