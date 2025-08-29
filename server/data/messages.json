@@ -1,0 +1,295 @@
+[
+  {
+    "id": "MSG-722601",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Frame Fitting* stage. Reply if you need help.",
+    "status": "error",
+    "createdAt": "2025-08-29T00:18:42.601Z"
+  },
+  {
+    "id": "MSG-970598",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Courier Pickup* stage. Reply if you need help.",
+    "status": "error",
+    "createdAt": "2025-08-29T00:22:50.598Z"
+  },
+  {
+    "id": "MSG-003419",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Courier Pickup* stage. Reply if you need help.",
+    "status": "error",
+    "createdAt": "2025-08-29T00:23:23.419Z"
+  },
+  {
+    "id": "MSG-023773",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Lens Cutting* stage. Reply if you need help.",
+    "status": "error",
+    "createdAt": "2025-08-29T00:23:43.773Z"
+  },
+  {
+    "id": "MSG-131414",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Courier Pickup* stage. Reply if you need help.",
+    "status": "error",
+    "createdAt": "2025-08-29T00:25:31.414Z"
+  },
+  {
+    "id": "MSG-160898",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Courier Pickup* stage. Reply if you need help.",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:26:00.898Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBI3Q0JFMzA5MTk3ODIwNDcxNDgA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-201944",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Ready for Collection* stage. Reply if you need help.",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:26:41.944Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBJFRkZENDk1OTVEQzlENDE0NEUA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-216637",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Ready for Collection* stage. Reply if you need help.",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:26:56.637Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBIxODIxMjg5MEQ2MUJGMzEzODMA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-252074",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Courier Pickup* stage. Reply if you need help.",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:27:32.074Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBJGMkIzNzE3NkU1OThEQzdDQTcA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-460458",
+    "to": "+27641295093",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:31:00.458Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBI1QkQ1RkRCMTNBMDAyODQzQkEA",
+          "message_status": "accepted"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-470841",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Ready for Collection* stage. Reply if you need help.",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:31:10.841Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBIwMUUwQjMwNzg4NTQyMzc1NUUA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-509337",
+    "to": "+27641295093",
+    "body": "Hi Customer, your glasses are now at the *Frame Fitting* stage. Reply if you need help.",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:31:49.337Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBJDQzY2QkM2NkREQzg4NTM1MzcA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-676490",
+    "to": "+27641295093",
+    "body": "Hello Customer,\n\nGood news — your order ORD-1001 is now at *Ready for Collection*.\n\nEstimated ready time: 2 business days.\nTrack your order and view pickup details:\nhttp://localhost:5174/track/customer?order=ORD-1001\n\nIf you have questions, reply to this message or call +27 11 123 4567.\n\n– Lathi Tha' Eyecare",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:51:16.490Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBIxODA2QjFEQTlFRjlGMDVDMjQA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-807070",
+    "to": "+27641295093",
+    "body": "Hello Customer,\n\nGood news — your order ORD-1001 is now at *Ready for Collection*.\n\nEstimated ready time: 2 business days.\nTrack your order and view pickup details:\nhttp://localhost:5174/track/customer?order=ORD-1001\n\nIf you have questions, reply to this message or call +27 11 123 4567.\n\n– Lathi Tha' Eyecare",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:53:27.070Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBIyQzI0QkI5NjNDNkFENzNENjkA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-059187",
+    "to": "+27641295093",
+    "body": "Hello Customer,\n\nGood news — your order ORD-1001 is now at *Frame Fitting*.\n\nEstimated ready time: 2 business days.\nTrack your order and view pickup details:\nhttp://localhost:5173/track/customer?order=ORD-1001\n\nIf you have questions, reply to this message or call +27 11 123 4567.\n\n– Lathi Tha' Eyecare",
+    "status": "sent",
+    "createdAt": "2025-08-29T00:57:39.187Z",
+    "remote": {
+      "messaging_product": "whatsapp",
+      "contacts": [
+        {
+          "input": "+27641295093",
+          "wa_id": "27641295093"
+        }
+      ],
+      "messages": [
+        {
+          "id": "wamid.HBgLMjc2NDEyOTUwOTMVAgARGBIwNzY5NzIyMTVENzAxNEI5OTYA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "MSG-513632",
+    "to": "+27641295093",
+    "body": "Hello Customer,\n\nGood news — your order ORD-1001 is now at *Frame Fitting*.\n\nEstimated ready time: 2 business days.\nTrack your order and view pickup details:\nhttp://localhost:5173/track/customer?order=ORD-1001\n\nIf you have questions, reply to this message or call +27 11 123 4567.\n\n– Lathi Tha' Eyecare",
+    "status": "error",
+    "createdAt": "2025-08-29T01:05:13.632Z",
+    "remote": {
+      "error": {
+        "message": "Error validating access token: Session has expired on Thursday, 28-Aug-25 18:00:00 PDT. The current time is Thursday, 28-Aug-25 18:05:13 PDT.",
+        "type": "OAuthException",
+        "code": 190,
+        "error_subcode": 463,
+        "fbtrace_id": "Ar9pHlZPIrHInKY5V0vFCMD"
+      }
+    }
+  },
+  {
+    "id": "MSG-543493",
+    "to": "+27641295093",
+    "body": "Hello Brighton,\n\nGood news — your order ORD-1001 is now at *Frame Fitting*.\n\nEstimated ready time: 2 business days.\nTrack your order and view pickup details:\nhttp://localhost:5173/track/customer?order=ORD-1001\n\nIf you have questions, reply to this message or call +27 11 123 4567.\n\n– Lathi Tha' Eyecare",
+    "status": "error",
+    "createdAt": "2025-08-29T01:05:43.493Z",
+    "remote": {
+      "error": {
+        "message": "Error validating access token: Session has expired on Thursday, 28-Aug-25 18:00:00 PDT. The current time is Thursday, 28-Aug-25 18:05:43 PDT.",
+        "type": "OAuthException",
+        "code": 190,
+        "error_subcode": 463,
+        "fbtrace_id": "AYSbbhI4B1gXv3nqhFqmBYw"
+      }
+    }
+  },
+  {
+    "id": "MSG-589710",
+    "to": "+27641295093",
+    "body": "Hello Brighton,\n\nGood news — your order ORD-1001 is now at *Courier Pickup*.\n\nEstimated ready time: 2 business days.\nTrack your order and view pickup details:\nhttp://localhost:5173/track/customer?order=ORD-1001\n\nIf you have questions, reply to this message or call +27 11 123 4567.\n\n– Lathi Tha' Eyecare",
+    "status": "error",
+    "createdAt": "2025-08-29T01:06:29.710Z",
+    "remote": {
+      "error": {
+        "message": "Error validating access token: Session has expired on Thursday, 28-Aug-25 18:00:00 PDT. The current time is Thursday, 28-Aug-25 18:06:29 PDT.",
+        "type": "OAuthException",
+        "code": 190,
+        "error_subcode": 463,
+        "fbtrace_id": "AgxenEZ8bd_dyEgseOzm-2i"
+      }
+    }
+  }
+]
