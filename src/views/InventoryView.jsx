@@ -9,6 +9,7 @@ export default function InventoryView(){
   const [editing, setEditing] = useState(null)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [filterType, setFilterType] = useState('all')
 
   useEffect(()=>{ fetchList() }, [])
 
@@ -65,11 +66,18 @@ export default function InventoryView(){
     await fetch(`/api/inventory/${encodeURIComponent(id)}`, { method: 'DELETE' })
     fetchList()
   }
-function isLowStock(item){
-  return item.stock <= item.reorderThreshold
-}
 
-const lowStockCount = items.filter(isLowStock).length
+  function isLowStock(item){
+    return item.stock <= item.reorderThreshold
+  }
+
+  // Filter items based on selected type
+  const filteredItems = filterType === 'all' 
+    ? items 
+    : items.filter(item => item.type === filterType)
+
+  const lowStockCount = items.filter(isLowStock).length
+
   return (
     <motion.div initial={{opacity:0}} animate={{opacity:1}} className="space-y-4">
       <div className="flex items-center justify-between">
@@ -82,7 +90,16 @@ const lowStockCount = items.filter(isLowStock).length
           </div>
         )}
       </div>
-      <div>
+      <div className="flex gap-2 items-center">
+        <select 
+          value={filterType} 
+          onChange={(e) => setFilterType(e.target.value)}
+          className="px-3 py-1 border border-gray-300 rounded"
+        >
+          <option value="all">All Types</option>
+          <option value="frame">Frames</option>
+          <option value="lens">Lenses</option>
+        </select>
         <button onClick={startNew} className="px-3 py-1 bg-blue-600 text-white rounded">+ Add item</button>
       </div>
     </div>
@@ -102,7 +119,7 @@ const lowStockCount = items.filter(isLowStock).length
                   <th className="pb-2 w-28"> </th>                </tr>
               </thead>
               <tbody>
-                {items.map(it=> {
+                {filteredItems.map(it=> {
                   const lowStock = isLowStock(it)
                   return (
                     <tr key={it.id} className={`border-b ${lowStock ? 'bg-red-50' : ''}`}>
