@@ -1,5 +1,5 @@
 [
-  { "id": "F-100", "sku": "F-100", "name": "Classic Black", "type": "frame", "price": 1200, "stock": 10 },
-  { "id": "F-101", "sku": "F-101", "name": "Tortoise Shell", "type": "frame", "price": 1500, "stock": 5 },
-  { "id": "L-clear", "sku": "L-clear", "name": "Clear Lens", "type": "lens", "price": 800, "stock": 50 }
+  { "id": "F-100", "sku": "F-100", "name": "Classic Black", "type": "frame", "price": 1200, "stock": 10, "reorderThreshold": 5 },
+  { "id": "F-101", "sku": "F-101", "name": "Tortoise Shell", "type": "frame", "price": 1500, "stock": 5, "reorderThreshold": 5 },
+  { "id": "L-clear", "sku": "L-clear", "name": "Clear Lens", "type": "lens", "price": 800, "stock": 50, "reorderThreshold": 10 }
 ]
